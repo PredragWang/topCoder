@@ -55,31 +55,31 @@ This problem statement is the exclusive and proprietary property of TopCoder, In
 using namespace std;
 
 class BinPackingEasy{
-	public:
-	int minBins(vector <int> item){
-		sort(item.begin(), item.end());
-		int len = item.size();
-		int ret = 0;
-		int countMin = 0;
-		int ptr1 = 0, ptr2 = len - 1;
-		while (item[ptr1]==100) {
-			ptr1 ++;
-			countMin ++;
-		}
-		ret += countMin/3;
-		ptr1 = (countMin/3)*3;
-		while (ptr1 < ptr2) {
-			if (item[ptr1]+item[ptr2] <= 300) {
-				ret += 1;
-				ptr2 --;
-				ptr1 ++;
-			}
-			else {
-				ret += 1;
-				ptr2 --;
-			}
-		}
-		if (ptr1 == ptr2) ret += 1;
-		return ret;
-	}
+    public:
+    int minBins(vector <int> item){
+        sort(item.begin(), item.end());
+        int len = item.size();
+        int ret = 0;
+        int countMin = 0;
+        int ptr1 = 0, ptr2 = len - 1;
+        while (item[ptr1]==100) {
+            ptr1 ++;
+            countMin ++;
+        }
+        ret += countMin/3;
+        ptr1 = (countMin/3)*3;
+        while (ptr1 < ptr2) {
+            if (item[ptr1]+item[ptr2] <= 300) {
+                ret += 1;
+                ptr2 --;
+                ptr1 ++;
+            }
+            else {
+                ret += 1;
+                ptr2 --;
+            }
+        }
+        if (ptr1 == ptr2) ret += 1;
+        return ret;
+    }
 };
