@@ -81,8 +81,8 @@ This problem statement is the exclusive and proprietary property of TopCoder, In
 #include <iostream>
 using namespace std;
 class SparseFactorialDiv2{
-	public:
-		long long getCount(long long lo, long long hi, long long divisor);
+    public:
+        long long getCount(long long lo, long long hi, long long divisor);
 };
 /* The problem is getting the count of distinct numbers where every number is 
  * divisible by divisor when subtracting a square of an integer.
@@ -96,18 +96,18 @@ class SparseFactorialDiv2{
  * Thus N must be included in the number set when trying x1
  */
 long long SparseFactorialDiv2::getCount(long long lo, long long hi, long long divisor){
-	long long ret = 0;
-	long long mX = sqrt(hi);
-	vector<bool> computed(divisor, false);
-	long long h = 0, l = 0, s = 0;
-	for (long long x = 0; x <= mX; x ++) {
-		s = x*x;
-		if (!computed[s % divisor] || s <= 1){
-			h = (hi >= s ? (hi-s)/divisor : 0);
-			l = (lo-1 >= s ? (lo-1-s)/divisor : 0);
-			ret += (h - l);
-		}
-		computed[s % divisor] = true;
-	}
-	return ret;
+    long long ret = 0;
+    long long mX = sqrt(hi);
+    vector<bool> computed(divisor, false);
+    long long h = 0, l = 0, s = 0;
+    for (long long x = 0; x <= mX; x ++) {
+        s = x*x;
+        if (!computed[s % divisor] || s <= 1){
+            h = (hi >= s ? (hi-s)/divisor : 0);
+            l = (lo-1 >= s ? (lo-1-s)/divisor : 0);
+            ret += (h - l);
+        }
+        computed[s % divisor] = true;
+    }
+    return ret;
 }

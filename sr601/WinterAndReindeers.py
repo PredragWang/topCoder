@@ -76,64 +76,64 @@ lcs(A[0, xa-1], B[0, xb-1]) + lcs(A[ya+1, ], B[yb+1, ]) + <length of C>
 
 import sys
 class WinterAndReindeers:
-	def getNumber(self, allA, allB, allC):
-		A = ''.join(allA)
-		B = ''.join(allB)
-		C = ''.join(allC)
-		a = len(A)
-		b = len(B)
-		c = len(C)
-		if c > a or c > b:
-			return 0
-		lcsAB = self.lcs(A, B)
-		rlcsAB = self.lcs(A[::-1], B[::-1])
-		subSeqAC = self.subSeq(A, C)
-		subSeqBC = self.subSeq(B, C)
-		ret = 0
-		m = len(subSeqAC)
-		n = len(subSeqBC)
-		for i in range(0, m, 2):
-			startA = subSeqAC[i]
-			endA = subSeqAC[i+1]
-			for j in range(0, n, 2):
-				startB = subSeqBC[j]
-				endB = subSeqBC[j+1]
-				lcsLeft = 0 if (startA == 0 or startB == 0) else lcsAB[startA-1][startB-1]
-				lcsRight = 0 if (endA==a-1 or endB ==b-1) else rlcsAB[a-endA-2][b-endB-2]
-				ret = max(ret, lcsLeft + lcsRight + c)
-		return ret
-				
-	def lcs(self, A, B):
-		m = len(A)
-		n = len(B)
-		if m == 0 or n == 0:
-			return None
-		dp = [n*[0] for i in range(m)]
-		for i in range(m):
-			for j in range(n):
-				if A[i] == B[j]:
-					dp[i][j] = 1 if (i==0 or j==0) else dp[i-1][j-1] + 1
-				else:
-					up = 0 if i == 0 else dp[i-1][j]
-					left = 0 if j == 0 else dp[i][j-1]
-					dp[i][j] = max(up, left)
-		return dp
-		
-	def subSeq(self, str, C):
-		n = len(str)
-		c = len(C)
-		dp = []
-		for i in range(n-c+1):
-			if not str[i] == C[0]:
-				continue
-			ptrC = 0
-			for j in range(i, n):
-				if str[j] == C[ptrC]:
-					ptrC = ptrC + 1
-					if ptrC == c:
-						if len(dp) > 0 and dp[-1] == j:
-							dp = dp[:-2]
-						dp.append(i)
-						dp.append(j)
-						break
-		return dp
+    def getNumber(self, allA, allB, allC):
+        A = ''.join(allA)
+        B = ''.join(allB)
+        C = ''.join(allC)
+        a = len(A)
+        b = len(B)
+        c = len(C)
+        if c > a or c > b:
+            return 0
+        lcsAB = self.lcs(A, B)
+        rlcsAB = self.lcs(A[::-1], B[::-1])
+        subSeqAC = self.subSeq(A, C)
+        subSeqBC = self.subSeq(B, C)
+        ret = 0
+        m = len(subSeqAC)
+        n = len(subSeqBC)
+        for i in range(0, m, 2):
+            startA = subSeqAC[i]
+            endA = subSeqAC[i+1]
+            for j in range(0, n, 2):
+                startB = subSeqBC[j]
+                endB = subSeqBC[j+1]
+                lcsLeft = 0 if (startA == 0 or startB == 0) else lcsAB[startA-1][startB-1]
+                lcsRight = 0 if (endA==a-1 or endB ==b-1) else rlcsAB[a-endA-2][b-endB-2]
+                ret = max(ret, lcsLeft + lcsRight + c)
+        return ret
+                
+    def lcs(self, A, B):
+        m = len(A)
+        n = len(B)
+        if m == 0 or n == 0:
+            return None
+        dp = [n*[0] for i in range(m)]
+        for i in range(m):
+            for j in range(n):
+                if A[i] == B[j]:
+                    dp[i][j] = 1 if (i==0 or j==0) else dp[i-1][j-1] + 1
+                else:
+                    up = 0 if i == 0 else dp[i-1][j]
+                    left = 0 if j == 0 else dp[i][j-1]
+                    dp[i][j] = max(up, left)
+        return dp
+        
+    def subSeq(self, str, C):
+        n = len(str)
+        c = len(C)
+        dp = []
+        for i in range(n-c+1):
+            if not str[i] == C[0]:
+                continue
+            ptrC = 0
+            for j in range(i, n):
+                if str[j] == C[ptrC]:
+                    ptrC = ptrC + 1
+                    if ptrC == c:
+                        if len(dp) > 0 and dp[-1] == j:
+                            dp = dp[:-2]
+                        dp.append(i)
+                        dp.append(j)
+                        break
+        return dp

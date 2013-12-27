@@ -60,30 +60,30 @@ This problem statement is the exclusive and proprietary property of TopCoder, In
 
 import sys
 class WinterAndCandies:
-	def getNumber(self, type):
-		if len(type) == 0:
-			return -1
-		sortedTypes = sorted(type)
-		dp = [] 
-		#dp[i] is the number of ways to choose candies when max candy type is i+1
-		maxType = 0
-		count = 0
-		for i in range(len(sortedTypes)):
-			if sortedTypes[i] == maxType:
-				dp[-1] = (dp[-1]/count) * (count+1)
-				count = count + 1	
-			elif sortedTypes[i] == maxType + 1:
-				maxType = maxType + 1
-				if len(dp) == 0:
-					dp.append(1)
-				else:
-					dp.append(dp[-1])
-				count = 1
-			else:
-				break
-		if len(dp) == 0:
-			return 0
-		ret = 0
-		for i in range(len(dp)):
-			ret = ret + dp[i]
-		return ret
+    def getNumber(self, type):
+        if len(type) == 0:
+            return -1
+        sortedTypes = sorted(type)
+        dp = [] 
+        #dp[i] is the number of ways to choose candies when max candy type is i+1
+        maxType = 0
+        count = 0
+        for i in range(len(sortedTypes)):
+            if sortedTypes[i] == maxType:
+                dp[-1] = (dp[-1]/count) * (count+1)
+                count = count + 1    
+            elif sortedTypes[i] == maxType + 1:
+                maxType = maxType + 1
+                if len(dp) == 0:
+                    dp.append(1)
+                else:
+                    dp.append(dp[-1])
+                count = 1
+            else:
+                break
+        if len(dp) == 0:
+            return 0
+        ret = 0
+        for i in range(len(dp)):
+            ret = ret + dp[i]
+        return ret
