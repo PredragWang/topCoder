@@ -1,4 +1,4 @@
-"""
+/*
 Problem Statement
     
 It's winter time! Time to play some games.
@@ -72,7 +72,7 @@ Find (xa, ya) pairs where A[xa, ya] contains the whole subsequence of C
 Find (xb, yb) pairs where B[xb, yb] contains the whole subsequence of C
 For every (xa, ya) and (xb, yb) combination, longest possible S should has the length:
 lcs(A[0, xa-1], B[0, xb-1]) + lcs(A[ya+1, ], B[yb+1, ]) + <length of C>
-"""
+*/
 #include <iostream>
 #include <string>
 #include <vector>
